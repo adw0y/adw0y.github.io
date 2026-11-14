@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adway Jha · Shahr-e-Khayal</title>
+<meta name="description" content="Adway Jha: product, growth and AI engineering. A portfolio drawn as a walled city.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a painted, living city plan is the navigation; each quarter has its own colour, and the open quarter sits in a card beside the map. */
+:root{
+  --paper:#f7f0e1; --card:#fffaf0; --ink:#1c2447; --ink-soft:#56608a;
+  --country:#dce8c6; --cityground:#f3e2ba; --street:#e6cf9a; --wall:#a63d27; --tree:#5e9a48;
+  --river1:#2aa3c4; --river2:#2c5fb8; --gold:#d19a12; --lawn:#8cc267;
+  --c-product:#e4572e; --c-auto:#2a6fdb; --c-counsel:#8e44ad; --c-karkhana:#3558c9; --c-press:#d8432b;
+  --c-library:#0f8a6a; --c-maidan:#4f9a2c; --c-baithak:#c2337a; --c-dispatch:#d98a0b; --c-dak:#1290ad; --c-chowk:#b9820c;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --urdu:"Noto Nastaliq Urdu","Noto Naskh Arabic",serif;
+  --hindi:"Tiro Devanagari Hindi","Noto Serif Devanagari",serif; --deep:#16103a; --grey:#55595f;
+  color-scheme:light;
+}
+:root.night{
+  --paper:#050505; --card:#111111; --ink:#eeeae0; --ink-soft:#a39d90;
+  --country:#080a07; --cityground:#15130f; --street:#2b2619; --wall:#d9694f; --tree:#22452d;
+  --river1:#0e2636; --river2:#04090f; --gold:#ffcf5c; --lawn:#1f4a28; --deep:#000; --grey:#9a9a9a;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body::before{content:"";position:fixed;inset:-80px;z-index:-1;pointer-events:none;background-image:radial-gradient(ellipse at center,transparent 55%,rgba(110,70,20,.22) 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .62 -.16'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .006' numOctaves='5' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .12 0 0 0 1.5 -.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");background-size:100% 100%,420px 420px,1400px 1400px;animation:paper 70s ease-in-out infinite alternate}
+@keyframes paper{to{background-position:0 0,60px 40px,-180px -120px}}
+.night body::before{filter:invert(1) grayscale(1);opacity:.5}
+.mapbox::after{content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .62 -.16'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .006' numOctaves='5' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .12 0 0 0 1.5 -.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");background-size:420px 420px,1400px 1400px;mix-blend-mode:multiply;opacity:.75}
+.night .mapbox::after{mix-blend-mode:screen;filter:invert(1) grayscale(1);opacity:.28}
+.panel,.lg,.caravan{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .62 -.16'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:420px 420px}
+.night .panel,.night .lg,.night .caravan{background-image:none}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;transition:background .8s,color .8s}
+a{color:inherit;text-decoration-color:var(--qct,var(--c-product));text-decoration-thickness:2px;text-underline-offset:3px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--c-auto);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1560px;margin:0 auto;padding:18px 24px 28px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:14px;position:relative}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--c-product),var(--c-dispatch),var(--c-maidan),var(--c-library),var(--c-dak),var(--c-auto),var(--c-counsel),var(--c-baithak),var(--c-product));background-size:200% 100%;animation:flow 14s linear infinite}
+@keyframes flow{to{background-position:-200% 0}}
+.name{font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:0;letter-spacing:.005em;background:linear-gradient(90deg,var(--c-product),var(--c-dispatch),var(--c-baithak),var(--c-auto),var(--c-library),var(--c-product));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 18s linear infinite}
+.sub{margin:8px 0 0;color:var(--ink-soft);font-size:15px;max-width:62ch}
+.sub b{color:var(--ink);font-weight:700}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+.ctl{border:2px solid var(--ink);padding:7px 14px;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;border-radius:999px;transition:background .25s,color .25s,transform .2s}
+.ctl:hover{transform:translateY(-2px)}
+.ctl:hover,.ctl[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 480px;gap:28px;margin-top:20px;align-items:start}
+.mapwrap{overflow-x:auto;border-radius:18px;background:var(--country);box-shadow:0 14px 40px -18px rgba(20,30,80,.55),0 0 0 2px var(--ink);transition:background .8s}
+svg#city{display:block;width:100%;height:auto;min-width:720px}
+.caravan{margin-top:16px;overflow:hidden;border-radius:999px;background:var(--card);box-shadow:0 0 0 2px var(--ink);padding:8px 0;display:flex;align-items:center}
+.caravan .lab{flex:none;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:0 14px 0 18px;color:var(--ink-soft)}
+.belt{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:14px;width:max-content;animation:march 38s linear infinite}
+.caravan:hover .track{animation-play-state:paused}
+@keyframes march{to{transform:translateX(-50%)}}
+.logo{flex:none;background:#fff;border-radius:10px;padding:5px 10px;height:44px;display:inline-flex;align-items:center}
+.logo img{height:30px;width:auto;display:block}
+aside{min-width:0}
+@media (min-width:1021px){
+  main>div:first-child{position:sticky;top:14px;align-self:start}
+  svg#city{max-height:calc(100vh - 118px)}
+}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px;font-weight:700}
+.legend h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:28px;margin:0 0 12px;line-height:1.1}
+.legend ul{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:6px}
+.lg{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;padding:8px 12px 8px 8px;border-radius:12px;background:var(--card);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--qc) 45%,transparent);transition:transform .25s,box-shadow .25s,background .25s}
+.lg:hover,.lg.hot{transform:translateX(6px);background:color-mix(in srgb,var(--qc) 16%,var(--card));box-shadow:inset 0 0 0 2px var(--qc)}
+.lg .k{width:64px;height:42px;border-radius:9px;background-color:var(--qc);background-size:cover;background-position:center;position:relative;box-shadow:0 0 0 1.5px var(--qc);overflow:hidden}
+.lg .k i{position:absolute;left:0;bottom:0;min-width:20px;padding:0 5px;height:19px;border-radius:0 8px 0 0;background:var(--qc);color:#fff;display:grid;place-items:center;font-family:var(--display);font-style:normal;font-weight:700;font-size:13px}
+.lg:hover .k,.lg.hot .k{background-size:150%;transition:background-size .6s}
+.banner{aspect-ratio:16/9;overflow:hidden;position:relative;background:var(--qc)}
+.art{position:absolute;inset:0;background-size:cover;background-position:center;animation:kb 20s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.01)}to{transform:scale(1.22) translate(-2.2%,1.6%)}}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.26) 50%,transparent 58%);background-size:260% 100%;animation:sheen 8s linear infinite}
+@keyframes sheen{from{background-position:130% 0}to{background-position:-130% 0}}
+.lg .n{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.1}
+.lg .d{display:block;font-family:var(--body);font-weight:400;font-size:13.5px;color:var(--ink-soft)}
+.lg .u{font-family:var(--urdu);font-size:14px;color:var(--ink-soft);line-height:1.9}
+.panel{--qct:var(--qc);background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 14px 40px -20px rgba(20,30,80,.6),0 0 0 2px var(--qc)}
+.night .panel{--qct:color-mix(in srgb,var(--qc) 50%,#fff)}
+.phead{background:linear-gradient(125deg,var(--qc),color-mix(in srgb,var(--qc) 58%,var(--deep)));color:#fff;padding:14px 18px 16px;position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;inset:-60% -20%;background:repeating-linear-gradient(60deg,rgba(255,255,255,.09) 0 14px,transparent 14px 34px);animation:slide 16s linear infinite}
+@keyframes slide{to{transform:translateX(68px)}}
+.phead>*{position:relative;z-index:1}
+.back{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.2);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.back:hover{background:rgba(255,255,255,.36)}
+.back{display:inline-flex;align-items:center;gap:7px;padding:6px 13px 6px 10px;font-size:12px}
+.back .arr{font-size:17px;line-height:1;letter-spacing:0;transition:transform .25s}
+.back:hover .arr{transform:translateX(-4px)}
+.phead .eyebrow{color:rgba(255,255,255,.82)}
+.phead h2{font-family:var(--display);font-weight:700;font-size:42px;line-height:1.02;margin:0;text-wrap:balance}
+.phead .u{font-family:var(--urdu);font-size:20px;line-height:2;margin:0;text-align:left;color:rgba(255,255,255,.9)}
+.lede{font-family:var(--display);font-style:italic;font-size:19.5px;line-height:1.3;margin:6px 0 0;text-wrap:balance}
+.pbody{padding:4px 18px 16px}
+.entry{padding:16px 0 8px;border-bottom:1.5px dashed color-mix(in srgb,var(--qc) 45%,transparent);animation:rise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*80ms)}
+.entry:last-child{border-bottom:0}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.ehead{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.ehead>div{min-width:230px;flex:1}
+.ehead .logo{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--ink) 18%,transparent)}
+.entry h3{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.12;margin:0}
+.meta{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--qct);margin:0 0 3px;font-weight:700;text-wrap:balance}
+.sher{font-family:var(--display);font-style:italic;font-size:20.5px;line-height:1.3;margin:12px 0;padding:8px 0 8px 14px;border-left:4px solid var(--qc);background:linear-gradient(90deg,color-mix(in srgb,var(--qc) 13%,transparent),transparent)}
+.sher span{display:block}
+.sher span+span{padding-left:1.4em}
+.entry p{margin:8px 0;text-wrap:pretty}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin:12px 0}
+.stat{border-radius:12px;padding:8px 10px;background:color-mix(in srgb,var(--qc) 12%,transparent)}
+.stat b{display:block;font-family:var(--display);font-weight:700;font-size:27px;line-height:1.05;color:var(--qct);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--ink-soft);line-height:1.25;display:block}
+.links{font-size:14px;font-weight:700}
+.medal{display:inline-block;background:linear-gradient(120deg,#f6c945,#d99412);color:#3a2500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;margin:0 6px 4px 0;font-weight:700;border-radius:999px}
+.medal.s{background:linear-gradient(120deg,#e6e9ef,#aab3c4)}
+.pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0;align-items:start}
+.pics.one{grid-template-columns:1fr}
+.pics figure{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--ink) 25%,transparent)}
+.pics img{display:block;width:100%;height:auto;transition:transform .6s}
+.pics figure:hover img{transform:scale(1.06)}
+.pics figcaption{font-size:12px;color:var(--ink-soft);padding:4px 8px;background:var(--card)}
+.hi{font-family:var(--hindi);color:var(--grey)}
+.phead .hi{color:rgba(255,255,255,.78);font-size:19px;margin:-4px 0 2px;line-height:1.4}
+.lg .u{text-align:right}.lg .u em{display:block;font-family:var(--hindi);font-style:normal;font-size:13px;color:var(--grey);line-height:1.2}
+.lbh{font-family:var(--hindi);font-size:13px;fill:var(--grey);text-anchor:middle;paint-order:stroke;stroke:var(--halo,var(--cityground));stroke-width:4px}
+.sec{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--qc);margin:18px -18px 0;padding:7px 18px}
+.snap{margin-top:12px}
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin:6px 0 10px;scrollbar-color:var(--qc) transparent}
+.strip figure{flex:0 0 84%;margin:0;scroll-snap-align:start;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--qc) 55%,transparent)}
+.strip.tall figure{flex-basis:56%}
+.strip img{display:block;width:100%;height:auto}
+.now{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:center;margin:10px 0;padding:12px;border-radius:14px;background:color-mix(in srgb,var(--qc) 12%,transparent)}
+.now b{display:block;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.15}
+.now span{font-size:14px;color:var(--ink-soft)}
+.disc{width:88px;height:88px;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 2px,#262626 2px 4px);position:relative;animation:spin 5s linear infinite;box-shadow:0 4px 12px -4px #000}
+.disc::after{content:"";position:absolute;inset:31%;border-radius:50%;background:radial-gradient(circle,var(--card) 0 14%,var(--qc) 15% 100%)}
+.disc::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent 0 12%,rgba(255,255,255,.22) 16%,transparent 22% 60%,rgba(255,255,255,.16) 66%,transparent 72%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.book{width:70px;height:96px;margin:0 auto;border-radius:3px 7px 7px 3px;background:linear-gradient(90deg,color-mix(in srgb,var(--qc) 60%,#000) 0 9%,var(--qc) 10%);box-shadow:5px 5px 0 -1px var(--card),5px 5px 0 0 var(--ink-soft);display:grid;place-items:center;color:#fff;font-family:var(--display);font-style:italic;font-size:13px;text-align:center;line-height:1.1;padding:6px 6px 6px 12px;transform-origin:left center;animation:leaf 6s ease-in-out infinite alternate}
+@keyframes leaf{from{transform:perspective(400px) rotateY(0)}to{transform:perspective(400px) rotateY(-16deg)}}
+.shelf{display:grid;gap:8px;margin:12px 0}
+.slot{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:center;border:1.5px dashed var(--ink-soft);border-radius:12px;padding:12px 14px;color:var(--ink-soft);text-decoration:none}
+.slot span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.slot b{font-family:var(--display);font-style:italic;font-weight:600;font-size:19px;line-height:1.2}
+.slot.full{border:0;color:#fff;background:linear-gradient(120deg,var(--qc),color-mix(in srgb,var(--qc) 62%,var(--deep)));transition:transform .2s}
+.slot.full:hover{transform:translateX(5px)}
+.slot.full b{font-style:normal;font-weight:700;font-size:22px}
+.slot.full b i{display:block;font-weight:500;font-size:16px;opacity:.9}
+.mapbox{position:relative}
+.mapctl{position:absolute;right:14px;bottom:14px;display:grid;gap:6px;z-index:2}
+.mapctl button{width:38px;height:38px;border-radius:11px;background:var(--card);color:var(--ink);box-shadow:0 0 0 2px var(--ink),0 6px 14px -6px rgba(0,0,0,.5);font-size:21px;font-weight:700;line-height:1;transition:transform .15s}
+.mapctl button:hover{transform:scale(1.1)}
+svg#city{cursor:grab}svg#city.drag{cursor:grabbing}
+.addr{display:grid;gap:8px;margin:10px 0}
+.addr a{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--qc) 12%,transparent);text-decoration:none;font-weight:700;transition:transform .2s,background .2s}
+.addr a:hover{transform:translateX(5px);background:color-mix(in srgb,var(--qc) 24%,transparent)}
+.addr a span{font-weight:400;color:var(--ink-soft);overflow-wrap:anywhere;text-align:right}
+footer{margin-top:26px;padding-top:12px;font-size:13px;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+#index{display:none;max-width:780px;margin:20px auto 0}
+body.idx main{display:none} body.idx #index{display:grid;gap:26px}
+/* ---------- map ---------- */
+.q,.gate{cursor:pointer}
+.q:focus,.gate:focus{outline:none}
+.hit{fill:transparent;stroke:transparent;stroke-width:3;stroke-linejoin:round;transition:fill .3s,stroke .3s}
+.q:hover .hit,.q.hot .hit,.q:focus-visible .hit{fill:color-mix(in srgb,var(--qc) 20%,transparent);stroke:var(--qc)}
+.q.active .hit{stroke:var(--qc);stroke-dasharray:10 7;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-17}}
+.blds{transition:opacity .5s}
+#city.has-active .q:not(.active) .blds{opacity:.3}
+.bld{animation:pop .6s cubic-bezier(.2,1.5,.4,1) both;animation-delay:var(--d);transform-box:fill-box;transform-origin:center}
+@keyframes pop{from{transform:scale(0);opacity:0}}
+.b1{fill:var(--qc)}.b2{fill:color-mix(in srgb,var(--qc) 72%,#fff)}.b3{fill:color-mix(in srgb,var(--qc) 78%,#101040)}
+.night .b1{fill:color-mix(in srgb,var(--qc) 58%,#050505)}.night .b2{fill:color-mix(in srgb,var(--qc) 76%,#050505)}.night .b3{fill:color-mix(in srgb,var(--qc) 40%,#050505)}
+.win{fill:var(--gold);display:none}
+.night .win{display:block;animation:flick 3.4s ease-in-out infinite;animation-delay:var(--d)}
+.court{fill:var(--cityground)}
+.plate{fill:var(--cityground);stroke:var(--qc);stroke-width:2.2}
+.ln{fill:none;stroke:var(--ink);stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.fq{fill:var(--qc)}
+.lbl{font-family:var(--display);font-style:italic;font-weight:700;font-size:22px;fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:var(--halo,var(--cityground));stroke-width:6px;stroke-linejoin:round;transition:font-size .25s}
+.q:hover .lbl,.gate:hover .lbl,.hot .lbl{font-size:25px}
+.lbs{font-family:var(--body);font-weight:700;font-size:9.5px;letter-spacing:.18em;fill:var(--qc,var(--ink-soft));text-anchor:middle;text-transform:uppercase;paint-order:stroke;stroke:var(--halo,var(--cityground));stroke-width:4px}
+.lbu{font-family:var(--urdu);font-size:15px;fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:var(--halo,var(--cityground));stroke-width:5px}
+.out{--halo:var(--country)}
+.leaf{stroke:var(--qc);stroke-width:3.2;stroke-linecap:round;transition:transform .7s cubic-bezier(.3,1.2,.3,1);transform-box:fill-box}
+.leaf.l{transform-origin:left center}.leaf.r{transform-origin:right center}
+.gate.active .leaf.l,.gate:hover .leaf.l,.gate.hot .leaf.l{transform:rotate(-76deg)}
+.gate.active .leaf.r,.gate:hover .leaf.r,.gate.hot .leaf.r{transform:rotate(76deg)}
+.tower{fill:var(--qc);stroke:var(--ink);stroke-width:1.2}
+.halo{fill:var(--qc);opacity:.22;transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{from{transform:scale(.5);opacity:.5}to{transform:scale(1.5);opacity:0}}
+.wall{fill:none;stroke-linejoin:round;stroke-dasharray:1;animation:draw 1.9s ease-out both}
+@keyframes draw{from{stroke-dashoffset:1}}
+.lamp{fill:var(--wall);opacity:.55}
+.night .lamp{fill:var(--gold);opacity:1;filter:drop-shadow(0 0 5px var(--gold));animation:flick 3.2s ease-in-out infinite}
+.night .lamp:nth-child(3n){animation-delay:-1.1s}.night .lamp:nth-child(3n+1){animation-delay:-2.3s}
+@keyframes flick{0%,100%{opacity:1}45%{opacity:.55}60%{opacity:.9}}
+.fly{display:none}.night .fly{display:block;fill:var(--gold);filter:drop-shadow(0 0 4px var(--gold));animation:flick 2.4s ease-in-out infinite;animation-delay:var(--d)}
+.kite{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5s ease-in-out infinite alternate}
+.kite.k2{animation-duration:6.4s;animation-delay:-2s}
+@keyframes sway{from{transform:translate(-9px,5px) rotate(-12deg)}to{transform:translate(11px,-7px) rotate(13deg)}}
+.ring{fill:none;stroke:var(--river1);stroke-width:1.6;transform-box:fill-box;transform-origin:center;animation:pulse 2.8s ease-out infinite}
+.ring.r2{animation-delay:-1.4s}
+.night .day{display:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (max-width:1020px){
+  main{grid-template-columns:1fr;gap:18px}
+  .wrap{padding:14px 16px 24px}
+  .name{font-size:36px}
+  .phead h2{font-size:34px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1 class="name">Adway Jha</h1>
+    <p class="sub"><b>Product, growth and AI engineering.</b> A plan of the works, surveyed at Kharagpur from 2023 to the present. Enter by a gate, or read the legend.</p>
+  </div>
+  <div class="controls">
+    <button class="ctl" id="btn-index" aria-pressed="false">Plain index</button>
+    <button class="ctl" id="btn-night" aria-pressed="false">Light the lamps</button>
+  </div>
+</header>
+
+<main>
+  <div>
+    <div class="mapbox">
+    <div class="mapwrap" id="mapwrap">
+      <svg id="city" viewBox="-100 -10 1310 850" role="group" aria-label="Plan of an invented walled city. Each quarter opens a part of the portfolio."></svg>
+    </div>
+    <div class="mapctl">
+      <button id="z-in" aria-label="Zoom in" title="Zoom in">+</button>
+      <button id="z-out" aria-label="Zoom out" title="Zoom out">&minus;</button>
+      <button id="z-fit" aria-label="Show the whole city" title="Show the whole city">&#9635;</button>
+    </div>
+    </div>
+    <div class="caravan" aria-label="Organisations worked with">
+      <span class="lab">On the road with</span>
+      <div class="belt"><div class="track" id="track"></div></div>
+    </div>
+  </div>
+  <aside id="side" aria-live="polite"></aside>
+</main>
+
+<section id="index" aria-label="Plain index of everything in the city"></section>
+
+<footer>
+  <span>The city is invented. The work is real. Drawn in code, not to scale.</span>
+  <span>Quarter paintings generated with Kling AI. Open to commissions.</span>
+</footer>
+</div>
+
+<script>
+const IMG={"a1": "img/a1.jpg", "a2": "img/a2.jpg", "a4": "img/a4.jpg", "nb1": "img/nb1.jpg", "nb2": "img/nb2.jpg", "blinkit": "img/blinkit.png", "cars24": "img/cars24.png", "dream11": "img/dream11.png", "hbs": "img/hbs.png", "iitd": "img/iitd.png", "iitkgp": "img/iitkgp.png", "insead": "img/insead.png", "iimb": "img/iimb.png", "marico": "img/marico.png", "rapido": "img/rapido.png", "toddle": "img/toddle.png", "unlockfit": "img/unlockfit.png", "anthill": "img/anthill.png", "gymkhana": "img/gymkhana.png", "bclub": "img/bclub.png", "cfa": "img/cfa.png", "hult": "img/hult.png", "awaaz": "img/awaaz.png", "s_iimb1": "img/s_iimb1.jpg", "s_iimb2": "img/s_iimb2.jpg", "s_iimb3": "img/s_iimb3.jpg", "s_mna1": "img/s_mna1.jpg", "s_mna2": "img/s_mna2.jpg", "s_mna3": "img/s_mna3.jpg", "s_lko1": "img/s_lko1.jpg", "s_lko2": "img/s_lko2.jpg", "s_lko3": "img/s_lko3.jpg", "s_nb1": "img/s_nb1.jpg", "s_nb2": "img/s_nb2.jpg", "s_nb3": "img/s_nb3.jpg", "nl1": "img/nl1.jpg", "nl2": "img/nl2.jpg", "nl3": "img/nl3.jpg", "table": "img/table.jpg", "r1": "img/r1.jpg", "r2": "img/r2.jpg", "illu1": "img/illu1.jpg", "illu2": "img/illu2.jpg", "alpha": "img/alpha.png"};
+const ART={"product-gate": "art/product-gate.jpg", "automation-gate": "art/automation-gate.jpg", "counsel-gate": "art/counsel-gate.jpg", "karkhana": "art/karkhana.jpg", "chhapakhana": "art/chhapakhana.jpg", "maidan": "art/maidan.jpg", "kutubkhana": "art/kutubkhana.jpg", "baithak": "art/baithak.jpg", "dispatches": "art/dispatches.jpg", "chowk": "art/chowk.jpg", "dak-ghar": "art/dak-ghar.jpg"};
+(function(){const st=document.createElement("style");st.textContent=":root{"+Object.keys(ART).map(k=>"--art-"+k+":url("+ART[k]+")").join(";")+"}";document.head.appendChild(st)})();
+const LOGONAME={alpha:"Alpha Consults",anthill:"Anthill Ventures",gymkhana:"Technology Students' Gymkhana",bclub:"Business Club, IIT Kharagpur",cfa:"CFA Institute",hult:"Hult Prize",awaaz:"Awaaz",blinkit:"Blinkit",toddle:"Toddle",unlockfit:"Unlock.fit",dream11:"Dream11",cars24:"CARS24",rapido:"Rapido",marico:"Marico",hbs:"Harvard Business School",insead:"INSEAD",iimb:"IIM Bangalore",iitd:"IIT Delhi",iitkgp:"IIT Kharagpur"};
+const strip=(keys,alt,cls)=>'<div class="strip'+(cls||'')+'">'+keys.map((k,i)=>'<figure><img src="'+IMG[k]+'" alt="'+alt+', page '+(i+1)+'"></figure>').join('')+'</div>';
+const deck=(k,alt)=>'<p class="meta snap">Snapshots from the deck</p>'+strip([k+'1',k+'2',k+'3'],alt);
+const logo=k=>'<span class="logo"><img src="'+IMG[k]+'" alt="'+LOGONAME[k]+' logo"></span>';
+const pic=(k,alt,cap)=>'<figure><img src="'+IMG[k]+'" alt="'+alt+'">'+(cap?'<figcaption>'+cap+'</figcaption>':'')+'</figure>';
+
+/* ---------- content ---------- */
+const Q=[
+{id:"product-gate",kind:"gate",key:"I",c:"--c-product",name:"Product Gate",ur:"",line:"Blinkit, Dream11, Unlock.fit",
+ lede:"Work done where a product meets pressure.",
+ entries:[
+  {logo:"blinkit",meta:"Blinkit · Product Management Intern · Gurugram · May to July 2026",title:"The picture and the packet",
+   sher:["The screen showed a clean photograph.","The shelf held a brown packet."],
+   stats:[["5","warehouses profiled"],["50K+","SKUs in scope"],["~92%","attribute accuracy"],["~65%","less manual cataloguing"]],
+   body:["Picking failed where the photo and the packet disagreed. I proposed a profiler at the inbound stage and traced the failures to one cause: the image did not match the SKU.",
+         "Then I built a vision-language pipeline that reads more than 70 attributes from every SKU. It cut manual cataloguing and made automated putaway possible. The PRD mapped 8 app flows across the warehouse system, store operations, consumer and vendor surfaces, for 5 teams."]},
+  {logo:"dream11",meta:"Dream11 · Product Intern · Mumbai · June to July 2025",title:"One offer does not fit a crowd",
+   sher:["Every player got the same offer.","No two players keep the same habits."],
+   stats:[["220M+","users on the platform"],["80%","less reporting time"],["20%","better marketing ROI"]],
+   body:["Marketing and support decisions ran on instinct. I built a Promotion Intelligence Tool that tracks click-through, conversion and retention, with dashboards in Flask and Chart.js and the reporting automated.",
+         "Holdout cohorts, test against control, showed which promotions produced a real lift and which only looked busy."]},
+  {logo:"unlockfit",meta:"Unlock.fit · Product and Growth Intern · four months, to August 2025",title:"A shop on a lane with no name",
+   sher:["A good product that nobody can find","is a shop on a lane with no name."],
+   stats:[["4","months with the founder"],["4","verticals covered"],["5","platforms mapped"]],
+   body:["Unlock.fit reads your DNA to guide your health. A small team of us from IIT Kharagpur worked with its founder across four fronts.",
+         "Search. A full audit of where the company stood, then on-page fixes to keywords, meta tags and content, and off-page work on backlinks and directories to raise its ranking.",
+         "Analytics. Funnel exploration showed where people dropped out of checkout. iOS activity logs surfaced performance bugs and an inflated engagement-time figure. We proposed a reorganised home screen with clearer labels.",
+         "Social. A strategy for each platform, from Instagram and LinkedIn to YouTube, Facebook and WhatsApp, with a content calendar and a cost comparison of ad pricing.",
+         "Affiliates and influencers. We cleaned the affiliate data so it could be tracked, and made the case for micro-influencers over large ones."]}
+ ]},
+{id:"automation-gate",kind:"gate",key:"II",c:"--c-auto",name:"Automation Gate",ur:"",line:"Toddle, CARS24",
+ lede:"Machines set to the work that people should not have to repeat.",
+ entries:[
+  {logo:"toddle",meta:"Toddle · Growth Engineering Intern · Remote · December 2025 to April 2026",title:"Two days, then two hours",
+   sher:["A quarter's review took two days to prepare.","A team has two hours."],
+   stats:[["880+","programs automated"],["~70%","less manual ops"],["~15 hrs","saved every week"],["~85%","faster CRM sync"]],
+   body:["Toddle is a teaching and curriculum platform used by international schools in more than 100 countries. I built AI-driven workflows on n8n across its clients, and JavaScript pipelines that ended a weekly ritual of manual data entry.",
+         "The quarterly business review went from two days of preparation to two hours, through a language-model system that turns unstructured customer data into a finished report."]},
+  {logo:"cars24",meta:"CARS24 · Loans24 live project · October to December 2024",title:"Lending to a stranger",
+   sher:["A loan is a guess about a stranger.","Better questions make it less of a guess."],
+   stats:[["90+","surveys run"],["20+","demand drivers mapped"],["20%","less approval friction"]],
+   body:["Loans24 is the used-car financing arm of CARS24. I mapped demand through surveys, resolved pain points across documentation and disbursement, and built an AI credit-assessment model that made approvals faster."]},
+  {meta:"See also",title:"Elsewhere in the city",
+   body:["The Blinkit vision pipeline stands at the Product Gate. The smaller tools stand in the Karkhana."]}
+ ]},
+{id:"counsel-gate",kind:"gate",key:"III",c:"--c-counsel",name:"Counsel Gate",ur:"",line:"Alpha Consults: Rapido, Marico. Anthill Ventures",
+ lede:"Advice, and the homework behind it.",
+ entries:[
+  {logo:"alpha",meta:"Alpha Consults · Director · August 2024 to July 2025",title:"A firm run by students",
+   stats:[["30+","member team"],["6+","live projects"],["3","sectoral reports"]],
+   body:["A student-run consultancy working across India. I led delivery for Marico, Rapido and CARS24, and put out two newsletters with more than 30 articles on business, finance and geopolitics."]},
+  {logo:"rapido",meta:"Rapido · through Alpha Consults",title:"Bike Pink",
+   sher:["The city already had its captains.","Few of them were women."],
+   stats:[["300+","women captains onboarded"],["20+","NGO partnerships"],["2","cities: Delhi, Kolkata"]],
+   body:["We launched Bike Pink with Rapido and brought women captains onto the road through NGO partnerships. The groundwork was a 61-page research document on how a captain is found, verified and kept."]},
+  {logo:"marico",meta:"Marico · through Alpha Consults",title:"Kaya, city by city",
+   stats:[["500+","retail nodes profiled"],["10","cities"]],
+   body:["Designed the go-to-market strategy for Kaya across direct-to-consumer and the hotel, restaurant and cafe trade."]},
+  {logo:"anthill",meta:"Anthill Ventures · Investment Analyst · Hyderabad · January to March 2025",title:"A bet, written down",
+   sher:["A thesis is a bet written down","before the money moves."],
+   body:["Wrote the Urban Lifestyle Fund thesis across beauty, personal care and fashion. Assessed startups at TiE's Leap Ahead 2.0. Built investment decks for the Taiwan and India partnership on semiconductors."]}
+ ]},
+{id:"karkhana",kind:"q",key:"1",c:"--c-karkhana",name:"Karkhana",ur:"کارخانہ",hi:"कारख़ाना",sub:"the workshop",line:"Things built: Quiet, small tools, Mehfil",
+ lede:"Each of these began with a problem I could name in a sentence.",
+ entries:[
+  {sec:"Projects, tools and software",meta:"Quiet · Founder · from May 2026",title:"What is said in the room",
+   sher:["What is said in the room should stay in the room.","So the transcript never left the device."],
+   stats:[["40+","discovery interviews"],["3","paying therapists"],["$19","a month"]],
+   body:["A privacy-first notes tool for therapists and lawyers. Transcription runs fully on the device with WhisperKit and Ollama, offline, so there is no third party to breach.",
+         "Then the wall. Therapy is not standardised, every region asks for something different, and the problem was not mine to love. I set it down."]},
+  {meta:"Tool · JavaScript",title:"Line Control Room",
+   body:["An andon board for a factory line that flags a likely bottleneck about two minutes before it forms."],
+   links:[["Code","https://github.com/adw0y/digitaltwin-control-room"]]},
+  {meta:"Tool · TypeScript, React",title:"MIS Dashboard",
+   body:["Takes messy Excel workbooks and turns them into a financial dashboard with drill-down, the kind a CFO or an investor reads."],
+   links:[["Code","https://github.com/adw0y/mis-dashboard"]]},
+  {meta:"Tool · Python",title:"Email Finder",
+   body:["Finds work email addresses from a company and a designation."],
+   links:[["Code","https://github.com/adw0y/email-finder"]]},
+  {meta:"Project",title:"Mehfil",
+   body:["A retrieval system for Urdu and Persian poetry that works across languages. It began with fifteen public-domain shers and a harness to compare how well each approach finds the couplet you meant."]},
+  {sec:"Design works",meta:"Design-24 · winner, twice · drawn by hand, in a team, in 24 hours",title:"Shafaq, a campus in the sky",
+   html:'<div class="pics">'+pic("a2","Hand-coloured axonometric drawing of a floating campus with labelled departments","The campus")+pic("a1","Hand-drawn sheet titled Shafaq with plan and material notes","Plan and materials")+'</div>'},
+  {meta:"Design-24 · a memorial to Vande Mataram",title:"Smritipath, from song to space",
+   html:'<div class="pics one">'+pic("table","Hand-drawn memorial sheets laid out on a studio table among pens and markers","The sheets on the table, hour twenty-something")+'</div><div class="pics one">'+pic("a4","Hand-drawn concept sheet titled Smritipath","Concept and form")+'</div>'},
+  {meta:"Architecture · modelled and rendered",title:"A resort",
+   html:'<div class="pics">'+pic("r1","Rendered view of a timber-fronted resort entrance with a fountain court","The arrival court")+pic("r2","Rendered view of a garden path with flower beds beside a building","The garden walk")+'</div>'},
+  {logo:"gymkhana",meta:"Editorial design · Technology Students' Gymkhana · 2025-26",title:"Illu Magazine",
+   body:["A magazine on Illumination, the Diwali festival of lamps at IIT Kharagpur, and on how the campus keeps it."],
+   html:'<div class="pics">'+pic("illu1","Front cover of Illu Magazine 2025-26 in bright truck-art florals","Front cover")+pic("illu2","Back cover of Illu Magazine with institute crests","Back cover")+'</div>'}
+ ]},
+{id:"chhapakhana",kind:"q",key:"2",c:"--c-press",name:"Chhapakhana",ur:"چھاپہ خانہ",hi:"छापाख़ाना",sub:"the press",line:"Awaaz since 2023, and the Gymkhana's publications",
+ lede:"A campus has a voice. Someone has to set the type.",
+ entries:[
+  {logo:"awaaz",meta:"Awaaz · Reporter to Editor · since 2023",title:"The campus paper",
+   stats:[["15+","grievance stories"],["20K+","readers reached"],["7","newsletter sponsors"]],
+   body:["Awaaz is the student-run media body of IIT Kharagpur, with twenty years of reporting behind it. I joined in my first semester and stayed.",
+         "The work is ordinary and exact: stories on what students cannot get fixed, interviews for Humans of KGP and Jewels of KGP, the annual newsletter, and the Soapbox, where candidates for the student elections answer in public."],
+   html:'<p class="meta snap">From the Freshers\' Issue, July 2026</p>'+strip(["nl1","nl2","nl3"],"Awaaz Freshers Issue 2026"," tall"),
+   links:[["awaaziitkgp.in","https://www.awaaziitkgp.in"]]},
+  {logo:"gymkhana",meta:"Technology Students' Gymkhana · Editor and Student Representative · July 2025 to April 2026",title:"A constitution, amended",
+   sher:["The rulebook had not been touched in 22 years.","It did not have words for everyone it governed."],
+   stats:[["20,000+","students represented"],["8+","flagship publications"],["22","years since the last amendment"]],
+   body:["Elected to the fifteen-member student government of the institute. I led the first amendment of the Gymkhana Constitution in 22 years, which made it gender-neutral and inclusive of the LGBTQ+ community on campus.",
+         "Also in the year: the Gymkhana's publications, its accounts, a food audit across more than 20 halls, and the logistics of the 75th Foundation Day, with Gautam Adani as guest and 2,000 people in the hall."]}
+ ]},
+{id:"maidan",kind:"q",key:"3",c:"--c-maidan",name:"Maidan",ur:"میدان",hi:"मैदान",sub:"the arena",line:"Competitions, and the Indian Case Challenge",
+ lede:"Open ground, where an argument has to stand up in front of strangers. Nine podiums in ten national competitions.",
+ entries:[
+  {meta:"National case study competition · early 2025",title:"Nation Building 2025",
+   stats:[["57,200+","participants"],["Top 5","in the country"],["100","Olympic medals, the roadmap"]],
+   html:'<p><span class="medal">East Zone gold</span><span class="medal">National finalist</span></p><p>A roadmap for India to win 100 medals at the 2036 Olympics, presented at the national finals.</p><div class="pics">'+pic("nb1","A ballroom stage at the national finals with the roadmap on screen","The national finals")+pic("nb2","Adway Jha speaking at a podium at the national finals","At the podium")+'</div>'+deck("s_nb","Olympic roadmap deck")},
+  {logo:"iimb",meta:"IIM Bangalore · May 2024",title:"Case-a-Blanca",
+   stats:[["6,000+","participants"]],
+   html:'<p><span class="medal">Gold</span></p><p>A PCA-based logistic regression that forecasts supply-chain disruptions, with dashboards to see them coming.</p>'+deck("s_iimb","Case-a-Blanca deck")},
+  {logo:["bclub","cfa"],meta:"Organised · Business Club, IIT Kharagpur",title:"Indian Case Challenge, 13th edition",
+   stats:[["7,200+","participants"],["13th","edition"],["1st","CFA Institute tie-up at an Indian STEM college"]],
+   body:["I co-coordinated the club's flagship competition and brought in the CFA Institute as a partner."]},
+  {meta:"IIT Kharagpur, Jadavpur University, IIEST Shibpur",title:"Design-24",
+   html:'<p><span class="medal">Winner, twice</span></p><p>A 24-hour architecture challenge between three colleges. The sheets hang in the Karkhana.</p>'},
+  {logo:"iitd",meta:"IIT Delhi · October 2024 · 1,400+ participants",title:"M&A Masterminds",
+   html:'<p><span class="medal s">Silver</span></p><p>The case for Synopsys acquiring Altair Engineering: financials, synergies, risks, and the plan for after the merger.</p>'+deck("s_mna","M and A Masterminds deck")},
+  {logo:"hult",meta:"IIT Kharagpur · February 2025",title:"Hult Prize",
+   html:'<p><span class="medal s">Second runner-up</span></p><p>Sahay, a hiring service for contractual workers built on digital identity and job matching.</p>'},
+  {meta:"IIM Lucknow · UPLDA CityScape",title:"Lucknow Development Challenge",
+   html:'<p>A proposal for green and sustainable mobility in Lucknow.</p>'+deck("s_lko","Lucknow mobility deck")},
+  {meta:"NCERT · 46th Jawaharlal Nehru National Science Exhibition · 2019",title:"A city of the future, at school",
+   html:'<p><span class="medal">State rank 1</span><span class="medal">National finalist</span></p><p>A model of a sustainable city, built before I knew I would study architecture.</p>'}
+ ]},
+{id:"kutubkhana",kind:"q",key:"4",c:"--c-library",name:"Kutubkhana",ur:"کتب خانہ",hi:"कुतुबख़ाना",sub:"the library",line:"Research: HBS, INSEAD, IIM Bangalore",
+ lede:"Slow work, done for people who check the footnotes.",
+ entries:[
+  {logo:"hbs",meta:"Harvard Business School · Research Intern · January to March 2025",title:"Foreign-born chief executives",
+   stats:[["500+","Fortune 500 CEOs"],["10,000+","CEO-years in the panel"],["8+","sources joined"]],
+   body:["Do immigrant CEOs take American companies further abroad? Under Prof. Prithwiraj Choudhury, I traced careers through Bloomberg and LinkedIn and built the panel. The regressions showed immigrant CEOs doing significantly better in sectors exposed to the world."]},
+  {logo:"insead",meta:"INSEAD · Research Assistant to Prof. Abhishek Borah · 2025",title:"What the market does on the day",
+   body:["Cumulative abnormal returns of stocks around product launches and patents. I merged the data, then replaced the manual spreadsheet steps with Python so the next round could be run again."]},
+  {logo:"iimb",meta:"IIM Bangalore · Jal Jeevan Mission cell · June to November 2024",title:"Water in Karnataka",
+   stats:[["10,000+","data points"],["10","villages surveyed"]],
+   body:["Models to find patterns in water contamination, and field research on how villages use their water."]}
+ ]},
+{id:"baithak",kind:"q",key:"5",c:"--c-baithak",name:"Baithak",ur:"بیٹھک",hi:"बैठक",sub:"the sitting room",line:"Music, books, the stage",
+ lede:"A city is judged by what it does after dark.",
+ entries:[
+  {meta:"Music",title:"On the stage",
+   stats:[["7","golds, vocals and groups"],["3","years running, the band"],["2","years running, solo"]],
+   body:["Western vocals and group events at the General Championship and Open IIT, first among more than 20 halls of residence."]},
+  {meta:"Theatre",title:"On the street",
+   body:["Nukkad, street theatre, with the hall's team."]},
+  {meta:"Listening to, right now",title:"On the turntable",
+   html:'<div class="now"><div class="disc" role="img" aria-label="A spinning record"></div><div><b>Valerie</b><span>Live at BBC Radio 1\'s Live Lounge · Amy Winehouse</span></div></div>'},
+  {meta:"Reading, right now",title:"On the bedside table",
+   html:'<div class="now"><div class="book" role="img" aria-label="A book">Where&shy;abouts</div><div><b>Whereabouts</b><span>Jhumpa Lahiri</span></div></div>'}
+ ]},
+{id:"dispatches",kind:"q",key:"6",c:"--c-dispatch",name:"Dispatches",ur:"",sub:"the lane of notes",line:"Essays and field notes",
+ lede:"Two pieces filed. The shelves are being stocked.",
+ entries:[
+  {meta:"The shelves",title:"Filed and forthcoming",
+   html:'<div class="shelf"><a class="slot full" href="https://adwayjha.substack.com/p/india-stack-inclusion-and-fintech"><span>No. 1 · 31 Oct 2025</span><b>India Stack, Inclusion &amp; Fintech Inflection <i>(thesis on the fintech sector)</i></b></a><a class="slot full" href="https://adwayjha.substack.com/"><span>No. 2 · Essay</span><b>The Meter Is Shared. The Andaaz Is Not.</b></a><div class="slot"><span>Dateline</span><b>A reported piece, forthcoming</b></div><div class="slot"><span>Dateline</span><b>A reported piece, forthcoming</b></div><div class="slot"><span>Dateline</span><b>An essay, forthcoming</b></div></div>',
+   links:[["Substack","https://adwayjha.substack.com/"]]}
+ ]},
+{id:"chowk",kind:"q",key:"7",c:"--c-chowk",name:"Chowk",ur:"چوک",hi:"चौक",sub:"the square",line:"About",
+ lede:"Where the roads from every gate meet.",
+ entries:[
+  {logo:"iitkgp",meta:"About",title:"Adway Jha",
+   body:["I study architecture at IIT Kharagpur, and I use it as a way of thinking: find where a system strains, then design around the strain.",
+         "The work since has sat where products meet pressure. Store operations at Blinkit, promotions at Dream11, workflows at Toddle, credit at CARS24, research at Harvard Business School.",
+         "Give me a problem statement and I will get it done. If I find the problem myself, I will get it done faster."]},
+  {meta:"In short",title:"The particulars",
+   body:["B.Arch, IIT Kharagpur, 2023 to 2028. Product, growth and AI engineering. Editor at Awaaz."]}
+ ]},
+{id:"dak-ghar",kind:"q",key:"8",c:"--c-dak",name:"Dak Ghar",ur:"ڈاک گھر",hi:"डाक घर",sub:"the post office",line:"Write to me",
+ lede:"By the river gate, where letters leave the city.",
+ entries:[
+  {meta:"Addresses",title:"Where to write",
+   html:'<div class="addr"><a href="mailto:adwayjha06@gmail.com">Email<span>adwayjha06@gmail.com</span></a><a href="tel:+918655194335">Phone<span>+91 86551 94335</span></a><a href="https://www.linkedin.com/in/adway-jha/">LinkedIn<span>linkedin.com/in/adway-jha</span></a><a href="https://github.com/adw0y">GitHub<span>github.com/adw0y</span></a><a href="https://adwayjha.substack.com/">Substack<span>adwayjha.substack.com</span></a></div>'}
+ ]}
+];
+const byId=Object.fromEntries(Q.map(q=>[q.id,q]));
+
+/* ---------- panels ---------- */
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function panelHTML(q,withBack){
+  let h='<div class="panel" style="--qc:var('+q.c+')">'+(ART[q.id]?'<div class="banner"><div class="art" role="img" aria-label="Miniature-style painting for '+esc(q.name)+'" style="background-image:var(--art-'+q.id+')"></div></div>':'')+'<div class="phead">';
+  if(withBack)h+='<button class="back" data-back="1"><span class="arr" aria-hidden="true">&larr;</span> Back to the legend</button>';
+  h+='<p class="eyebrow">'+(q.kind==="gate"?"Gate "+q.key:"Quarter "+q.key+(q.sub?" · "+q.sub:""))+'</p>';
+  h+='<h2>'+esc(q.name)+'</h2>';
+  if(q.ur)h+='<p class="u" lang="ur" dir="rtl">'+q.ur+'</p>';
+  if(q.hi)h+='<p class="hi" lang="hi">'+q.hi+'</p>';
+  h+='<p class="lede">'+esc(q.lede)+'</p></div><div class="pbody">';
+  q.entries.forEach((e,i)=>{
+    if(e.sec)h+='<h4 class="sec">'+esc(e.sec)+'</h4>';
+    h+='<article class="entry" style="--i:'+i+'"><div class="ehead">'+(e.logo?[].concat(e.logo).map(logo).join(""):"")+'<div><p class="meta">'+esc(e.meta)+'</p><h3>'+esc(e.title)+'</h3></div></div>';
+    if(e.sher)h+='<p class="sher"><span>'+esc(e.sher[0])+'</span><span>'+esc(e.sher[1])+'</span></p>';
+    if(e.stats)h+='<div class="stats">'+e.stats.map(s=>'<div class="stat"><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join("")+'</div>';
+    if(e.body)for(const p of e.body)h+='<p>'+esc(p)+'</p>';
+    if(e.html)h+=e.html;
+    if(e.links)h+='<p class="links">'+e.links.map(l=>'<a href="'+l[1]+'">'+esc(l[0])+'</a>').join(" · ")+'</p>';
+    h+='</article>';
+  });
+  return h+'</div></div>';
+}
+function legendHTML(){
+  const row=q=>'<li><button class="lg" style="--qc:var('+q.c+')" data-go="'+q.id+'"><span class="k" style="background-image:var(--art-'+q.id+')"><i>'+q.key+'</i></span><span class="n">'+esc(q.name)+'<span class="d">'+esc(q.line)+'</span></span><span class="u"><span lang="ur">'+(q.ur||"")+'</span>'+(q.hi?'<em lang="hi">'+q.hi+'</em>':'')+'</span></button></li>';
+  return '<div class="legend"><p class="eyebrow">Legend</p><h2>Shahr-e-Khayal, the city of thought</h2>'+
+    '<p class="eyebrow">Gates</p><ul>'+Q.filter(q=>q.kind==="gate").map(row).join("")+'</ul>'+
+    '<p class="eyebrow">Within the walls</p><ul>'+Q.filter(q=>q.kind!=="gate").map(row).join("")+'</ul></div>';
+}
+function countUp(root){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  root.querySelectorAll(".stat b").forEach(b=>{
+    const m=b.textContent.match(/^([~$]?)(\d[\d,]*)(.*)$/);if(!m)return;
+    const end=+m[2].replace(/,/g,""),comma=m[2].includes(","),t0=performance.now();
+    (function tick(now){const k=Math.min(1,(now-t0)/1100),v=Math.round(end*(1-Math.pow(1-k,3)));
+      b.textContent=m[1]+(comma?v.toLocaleString("en-US"):v)+m[3];if(k<1)requestAnimationFrame(tick)})(t0)});
+}
+document.getElementById("track").innerHTML=(Object.keys(LOGONAME).map(logo).join("")).repeat(2);
+
+/* ---------- map ---------- */
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("city");
+function el(t,a,p){const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);(p||svg).appendChild(n);return n}
+function rng(seed){let a=seed;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const pts=a=>a.map(p=>p.join(",")).join(" ");
+function inside(p,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!=(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+const PAL=["--c-product","--c-auto","--c-counsel","--c-baithak","--c-dispatch","--c-dak","--c-library"];
+
+const WALL=[[150,170],[420,90],[760,80],[960,130],[1010,300],[1000,520],[940,700],[700,760],[380,750],[170,660],[110,420]];
+const CH=[560,420];
+const GATES={"product-gate":{p:[590,85],ang:-1.7,lab:[590,40],out:[604,-10]},
+             "automation-gate":{p:[125,480],ang:76,lab:[10,452],out:[-100,512]},
+             "counsel-gate":{p:[540,755],ang:1.8,lab:[540,800],out:[534,840]}};
+const GHAT=[1005,410];
+const POLY={
+ karkhana:{pg:[[185,195],[425,122],[565,112],[548,392],[160,452],[140,410]],c:[352,285]},
+ chhapakhana:{pg:[[612,112],[760,108],[800,118],[790,250],[600,262]],c:[700,180]},
+ kutubkhana:{pg:[[598,285],[790,272],[815,125],[945,158],[985,300],[980,388],[590,398]],c:[845,300]},
+ maidan:{pg:[[150,505],[535,452],[520,725],[390,722],[195,640]],c:[350,590]},
+ baithak:{pg:[[590,445],[760,441],[770,600],[585,610]],c:[678,520]},
+ dispatches:{pg:[[580,632],[770,622],[900,690],[705,735],[565,728]],c:[712,678]},
+ "dak-ghar":{pg:[[790,440],[975,436],[970,520],[925,660],[790,600]],c:[880,520]}
+};
+
+const defs=el("defs",{});
+(function(){const g=el("linearGradient",{id:"riv",x1:0,y1:0,x2:1,y2:1},defs);
+  el("stop",{offset:0,style:"stop-color:var(--river1)"},g);el("stop",{offset:1,style:"stop-color:var(--river2)"},g)})();
+const gOut=el("g",{}),gRiver=el("g",{}),gCity=el("g",{}),gStreet=el("g",{}),gWall=el("g",{}),gQ=el("g",{}),gLamp=el("g",{}),gLife=el("g",{}),gGate=el("g",{}),gDeco=el("g",{});
+
+// countryside: roads, trees, fields, fireflies
+(function(){
+  const r=rng(11);
+  for(const id in GATES){const g=GATES[id];el("line",{x1:g.p[0],y1:g.p[1],x2:g.out[0],y2:g.out[1],style:"stroke:var(--street)","stroke-width":13,"stroke-linecap":"round"},gOut)}
+  const fields=[[-80,170,120,90,12,"--c-dispatch"],[-85,600,150,110,-8,"--c-maidan"],[230,772,120,52,4,"--c-dispatch"],[800,18,150,56,10,"--c-maidan"],[880,745,110,70,-14,"--c-dispatch"]];
+  for(const f of fields){const g=el("g",{transform:"rotate("+f[4]+" "+(f[0]+f[2]/2)+" "+(f[1]+f[3]/2)+")",opacity:.55},gOut);
+    for(let y=0;y<f[3];y+=7)el("line",{x1:f[0],y1:f[1]+y,x2:f[0]+f[2],y2:f[1]+y,style:"stroke:var("+f[5]+")","stroke-width":3,"stroke-linecap":"round"},g)}
+  for(let i=0;i<190;i++){const p=[-95+r()*1130,-5+r()*840];
+    if(inside(p,WALL)||p[0]>1028)continue;
+    let near=false;for(const w of WALL)if(Math.hypot(w[0]-p[0],w[1]-p[1])<28)near=true;if(near)continue;
+    el("circle",{cx:p[0].toFixed(1),cy:p[1].toFixed(1),r:(3+r()*4).toFixed(1),style:"fill:var(--tree)",opacity:(.55+r()*.4).toFixed(2)},gOut);
+    if(i%9==0)el("circle",{class:"fly",cx:(p[0]+8).toFixed(1),cy:(p[1]-6).toFixed(1),r:1.8,style:"--d:-"+(r()*3).toFixed(1)+"s"},gOut)}
+})();
+
+// river on the east: gradient water, flowing strokes, boats
+(function(){
+  const xs=[];for(let y=-10;y<=840;y+=50)xs.push([1052+Math.sin(y/95)*14+Math.sin(y/37)*4,y]);
+  const line=o=>"M"+xs.map(p=>(p[0]+o).toFixed(1)+","+p[1]).join(" L");
+  el("path",{d:line(0)+" L1210,840 L1210,-10 Z",fill:"url(#riv)"},gRiver);
+  el("path",{d:line(0),fill:"none",style:"stroke:var(--ink)","stroke-width":1.6},gRiver);
+  [30,70,112].forEach((o,i)=>{el("path",{id:"lane"+i,d:line(o),fill:"none"},defs);
+    for(let k=0;k<9;k++){const d=el("rect",{x:-7,y:-1,width:14,height:2,rx:1,fill:"#fff",opacity:.6},gRiver);
+      const m=el("animateMotion",{dur:(15+i*5)+"s",begin:"-"+((15+i*5)*k/9).toFixed(1)+"s",repeatCount:"indefinite",rotate:"auto"},d);
+      el("mpath",{href:"#lane"+i},m)}});
+  [["--c-product",0],["--c-dispatch",-34]].forEach(b=>{const g=el("g",{},gRiver);
+    el("path",{d:"M-15,0 Q0,-8 15,0 Q0,8 -15,0Z",style:"fill:var("+b[0]+");stroke:var(--ink)","stroke-width":1.2},g);
+    el("path",{d:"M-2,-6 L-2,6 L8,0Z",fill:"#fff"},g);
+    const m=el("animateMotion",{dur:"64s",begin:b[1]+"s",repeatCount:"indefinite",rotate:"auto"},g);el("mpath",{href:"#lane1"},m)});
+  for(let i=0;i<6;i++)el("line",{x1:1012,y1:388+i*9,x2:1046,y2:388+i*9,style:"stroke:var(--wall)","stroke-width":2.2,"stroke-linecap":"round"},gRiver);
+})();
+
+// the ground inside the walls, and the main streets
+el("polygon",{points:pts(WALL),style:"fill:var(--cityground);transition:fill .8s"},gCity);
+const STREETS=[[GATES["product-gate"].p,CH],[GATES["automation-gate"].p,CH],[GATES["counsel-gate"].p,CH],[CH,GHAT]];
+(function(){const r=rng(5);
+for(const s of STREETS){el("line",{x1:s[0][0],y1:s[0][1],x2:s[1][0],y2:s[1][1],style:"stroke:var(--street)","stroke-width":14,"stroke-linecap":"round"},gStreet);
+  const L=Math.hypot(s[1][0]-s[0][0],s[1][1]-s[0][1]),n=Math.floor(L/52);
+  for(let i=1;i<n;i++){const t=i/n;el("circle",{class:"lamp",cx:(s[0][0]+(s[1][0]-s[0][0])*t).toFixed(1),cy:(s[0][1]+(s[1][1]-s[0][1])*t).toFixed(1),r:2.4},gLamp)}
+  for(let k=0;k<4;k++){const a=k%2?s[0]:s[1],b=k%2?s[1]:s[0],o=(k<2?3.5:-3.5),dur=18+r()*14; // people walking both ways
+    const w=el("circle",{r:2.8,style:"fill:var("+PAL[Math.floor(r()*PAL.length)]+");stroke:var(--cityground);stroke-width:.8"},gLife);
+    el("animateMotion",{path:"M"+(a[0]+o)+","+(a[1]+o)+" L"+(b[0]+o)+","+(b[1]+o),dur:dur.toFixed(1)+"s",begin:"-"+(r()*dur).toFixed(1)+"s",repeatCount:"indefinite"},w)}}
+})();
+
+// wall: sandstone double line, drawn in, with gold-capped bastions
+el("polygon",{class:"wall",pathLength:1,points:pts(WALL),style:"stroke:var(--wall)","stroke-width":11},gWall);
+el("polygon",{class:"wall",pathLength:1,points:pts(WALL),style:"stroke:var(--cityground)","stroke-width":3.4},gWall);
+for(const w of WALL){el("circle",{cx:w[0],cy:w[1],r:10,style:"fill:var(--wall);stroke:var(--ink)","stroke-width":1.4},gWall);el("circle",{cx:w[0],cy:w[1],r:4,style:"fill:var(--gold)"},gWall)}
+
+// landmark glyphs, drawn around 0,0
+const GLYPH={
+ karkhana(g){el("rect",{class:"plate",x:-32,y:-22,width:64,height:40,rx:3},g);for(let i=-20;i<=20;i+=10)el("line",{class:"ln",x1:i,y1:-22,x2:i,y2:18},g);
+   el("circle",{class:"fq",cx:42,cy:-12,r:5.5},g);
+   for(let k=0;k<3;k++){const s=el("circle",{cx:42,cy:-18,r:3,fill:"#fff",opacity:0,class:"day"},g);
+     el("animate",{attributeName:"cy",from:-18,to:-58,dur:"3.6s",begin:(-k*1.2)+"s",repeatCount:"indefinite"},s);
+     el("animate",{attributeName:"opacity",values:"0;.8;0",dur:"3.6s",begin:(-k*1.2)+"s",repeatCount:"indefinite"},s);
+     el("animate",{attributeName:"r",from:2.5,to:8,dur:"3.6s",begin:(-k*1.2)+"s",repeatCount:"indefinite"},s)}},
+ chhapakhana(g){el("rect",{class:"plate",x:-30,y:-20,width:60,height:36,rx:3},g);
+   for(const cx of [-13,11]){const c=el("g",{transform:"translate("+cx+" -2)"},g);el("circle",{class:"ln",r:9},c);const sp=el("line",{class:"ln",x1:-9,y1:0,x2:9,y2:0,style:"stroke:var(--qc);stroke-width:2.4"},c);
+     el("animateTransform",{attributeName:"transform",type:"rotate",from:"0",to:cx<0?"360":"-360",dur:"4s",repeatCount:"indefinite"},sp)}
+   el("rect",{class:"fq",x:-6,y:-28,width:12,height:7,rx:1},g)},
+ kutubkhana(g){const o=[];for(let i=0;i<8;i++){const a=Math.PI/8+i*Math.PI/4;o.push([(25*Math.cos(a)).toFixed(1),(25*Math.sin(a)-2).toFixed(1)])}
+   el("polygon",{class:"plate",points:pts(o)},g);for(let i=0;i<8;i++){const a=i*Math.PI/4;el("line",{class:"ln",x1:8*Math.cos(a),y1:8*Math.sin(a)-2,x2:19*Math.cos(a),y2:19*Math.sin(a)-2},g)}el("circle",{class:"fq",cx:0,cy:-2,r:4.5},g)},
+ baithak(g){el("rect",{class:"plate",x:-27,y:-29,width:54,height:54,rx:3},g);
+   for(const p of [[-18,-20],[3,-20],[-18,1],[3,1]])el("rect",{x:p[0],y:p[1],width:15,height:15,rx:2,style:"fill:var(--lawn)"},g);
+   el("circle",{class:"fq",cx:0,cy:-2,r:4.5},g)},
+ dispatches(g){el("line",{class:"ln",x1:-50,y1:-1,x2:50,y2:-1,style:"stroke-width:2.4"},g);
+   for(let i=0;i<6;i++)el("rect",{x:-47+i*16.5,y:-17,width:12,height:12,rx:2,style:"fill:var("+(i==1?"--qc":"--cityground")+");stroke:var(--qc);stroke-width:2"},g)},
+ "dak-ghar"(g){el("rect",{class:"plate",x:-22,y:-20,width:44,height:30,rx:3},g);el("path",{class:"ln",d:"M-22,-20 L0,-3 L22,-20",style:"stroke:var(--qc);stroke-width:2.2"},g);
+   el("line",{class:"ln",x1:29,y1:10,x2:29,y2:-32},g);const f=el("path",{class:"fq",d:"M29,-32 Q37,-36 44,-29 Q37,-24 29,-22Z"},g);
+   el("animate",{attributeName:"d",values:"M29,-32 Q37,-36 44,-29 Q37,-24 29,-22Z;M29,-32 Q38,-28 45,-31 Q37,-20 29,-22Z;M29,-32 Q37,-36 44,-29 Q37,-24 29,-22Z",dur:"2.2s",repeatCount:"indefinite"},f)}
+};
+
+function label(g,x,y,q,subTxt){
+  if(q.ur)el("text",{class:"lbu",x,y:y-42,lang:"ur"},g).textContent=q.ur;
+  el("text",{class:"lbl",x,y:y+40},g).textContent=q.name;
+  if(subTxt)el("text",{class:"lbs",x,y:y+55},g).textContent=subTxt;
+  if(q.hi)el("text",{class:"lbh",x,y:y+72,lang:"hi"},g).textContent=q.hi;
+}
+function makeQ(id,build){
+  const q=byId[id],g=el("g",{class:"q","data-id":id,tabindex:0,role:"button","aria-label":q.name+": "+q.line,style:"--qc:var("+q.c+")"},gQ);build(g,q);return g}
+
+for(const id in POLY){const P=POLY[id];
+  makeQ(id,(g,q)=>{
+    el("clipPath",{id:"cp-"+id},defs).appendChild(el("polygon",{points:pts(P.pg)},defs));
+    const xs=P.pg.map(p=>p[0]),ys=P.pg.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+    const b=el("g",{class:"blds","clip-path":"url(#cp-"+id+")"},g),r=rng(id.length*97+P.c[0]);
+    if(id==="maidan"){
+      el("polygon",{points:pts(P.pg),style:"fill:var(--lawn)",opacity:.5},b);
+      el("ellipse",{cx:P.c[0],cy:P.c[1]-6,rx:122,ry:64,style:"fill:var(--street);stroke:var(--ink)","stroke-width":1.4},g);
+      el("ellipse",{cx:P.c[0],cy:P.c[1]-6,rx:104,ry:50,style:"fill:var(--lawn);stroke:var(--ink)","stroke-width":1.2},g);
+      el("rect",{class:"fq",x:P.c[0]-11,y:P.c[1]-80,width:22,height:9,rx:2},g);
+      for(let i=0;i<9;i++)el("circle",{cx:178+i*38,cy:(500-i*5.2+18).toFixed(1),r:6,style:"fill:var(--tree)"},g);
+      [[70,-34,"--c-product","kite"],[-78,-10,"--c-auto","kite k2"],[10,22,"--c-baithak","kite"]].forEach(k=>{const kg=el("g",{class:k[3]},el("g",{transform:"translate("+(P.c[0]+k[0])+" "+(P.c[1]+k[1])+")"},g));
+        el("path",{d:"M0,14 Q-6,30 4,44",fill:"none",style:"stroke:var(--ink)","stroke-width":.8},kg);
+        el("path",{d:"M0,-14 L10,0 L0,14 L-10,0Z",style:"fill:var("+k[2]+");stroke:var(--ink)","stroke-width":1},kg)});
+    }else{
+      const step=18.5;
+      for(let y=y0;y<y1;y+=step)for(let x=x0;x<x1;x+=step){
+        if(r()<.12)continue;const w=9+r()*8.5,h=9+r()*8.5,bx=x+r()*3,by=y+r()*3;
+        if(Math.abs(bx+w/2-P.c[0])<70&&Math.abs(by+h/2-P.c[1]-6)<62)continue;
+        const d=(Math.hypot(bx-CH[0],by-CH[1])/520*1.25).toFixed(2);
+        el("rect",{class:"bld b"+(1+Math.floor(r()*3)),x:bx.toFixed(1),y:by.toFixed(1),width:w.toFixed(1),height:h.toFixed(1),rx:1.6,style:"--d:"+d+"s"},b);
+        if(w>15&&h>15)el("rect",{class:"court",x:(bx+4.5).toFixed(1),y:(by+4.5).toFixed(1),width:(w-9).toFixed(1),height:(h-9).toFixed(1)},b);
+        else if(r()<.34)el("rect",{class:"win",x:(bx+w/2-1.8).toFixed(1),y:(by+h/2-1.8).toFixed(1),width:3.6,height:3.6,style:"--d:-"+(r()*3).toFixed(1)+"s"},b)}
+      GLYPH[id](el("g",{transform:"translate("+P.c[0]+" "+(P.c[1]-4)+")"},g));
+    }
+    el("polygon",{class:"hit",points:pts(P.pg)},g);
+    label(g,P.c[0],P.c[1],q,q.sub);
+  });
+}
+// the chowk, with a fountain, over the crossing
+makeQ("chowk",(g,q)=>{const o=[];for(let i=0;i<8;i++){const a=Math.PI/8+i*Math.PI/4;o.push([(CH[0]+30*Math.cos(a)).toFixed(1),(CH[1]+30*Math.sin(a)).toFixed(1)])}
+  el("polygon",{class:"plate",points:pts(o),style:"stroke-width:3"},g);
+  el("circle",{class:"ring",cx:CH[0],cy:CH[1],r:16},g);el("circle",{class:"ring r2",cx:CH[0],cy:CH[1],r:16},g);
+  el("circle",{cx:CH[0],cy:CH[1],r:9,style:"fill:var(--river1);stroke:var(--ink)","stroke-width":1.2},g);el("circle",{cx:CH[0],cy:CH[1],r:3.5,style:"fill:var(--gold)"},g);
+  el("polygon",{class:"hit",points:pts(o)},g);
+  el("text",{class:"lbl",x:CH[0]-74,y:CH[1]+7,style:"font-size:20px"},g).textContent="Chowk";el("text",{class:"lbh",x:CH[0]-74,y:CH[1]+24,lang:"hi"},g).textContent="चौक"});
+
+// gates
+for(const id in GATES){const G=GATES[id],q=byId[id];
+  const g=el("g",{class:"gate out","data-id":id,tabindex:0,role:"button","aria-label":q.name+": "+q.line,style:"--qc:var("+q.c+")"},gGate);
+  const t=el("g",{transform:"translate("+G.p[0]+" "+G.p[1]+") rotate("+G.ang+")"},g);
+  el("circle",{class:"halo",r:30},t);
+  el("rect",{x:-18,y:-9,width:36,height:18,style:"fill:var(--street)"},t);
+  el("rect",{class:"tower",x:-27,y:-12,width:11,height:24,rx:2},t);el("rect",{class:"tower",x:16,y:-12,width:11,height:24,rx:2},t);
+  el("line",{class:"leaf l",x1:-16,y1:0,x2:-1.5,y2:0},t);el("line",{class:"leaf r",x1:1.5,y1:0,x2:16,y2:0},t);
+  el("rect",{x:-40,y:-28,width:80,height:56,fill:"transparent"},t);
+  el("text",{class:"lbl",x:G.lab[0],y:G.lab[1]},g).textContent=q.name;
+  el("text",{class:"lbs",x:G.lab[0],y:G.lab[1]+15},g).textContent="Gate "+q.key;
+}
+// river gate, birds, compass, title, scale
+(function(){
+  const t=el("g",{transform:"translate("+GHAT[0]+" "+GHAT[1]+") rotate(92.6)",style:"--qc:var(--c-dak)"},gGate);
+  el("rect",{x:-16,y:-9,width:32,height:18,style:"fill:var(--street)"},t);el("rect",{class:"tower",x:-24,y:-11,width:9,height:22,rx:2},t);el("rect",{class:"tower",x:15,y:-11,width:9,height:22,rx:2},t);
+  [["M-110,300 C200,180 700,260 1300,90","46s","0s"],["M-110,640 C300,700 800,520 1300,600","58s","-21s"]].forEach(b=>{const g=el("g",{class:"day"},gDeco);
+    for(const o of [[0,0],[-14,8],[-13,-9]])el("path",{d:"M"+(o[0]-5)+","+(o[1]-3)+" L"+o[0]+","+o[1]+" L"+(o[0]-5)+","+(o[1]+3),fill:"none",style:"stroke:var(--ink)","stroke-width":1.4,"stroke-linecap":"round"},g);
+    el("animateMotion",{path:b[0],dur:b[1],begin:b[2],repeatCount:"indefinite",rotate:"auto"},g)});
+  el("text",{x:1128,y:424,style:"font-family:var(--display);font-style:italic;font-weight:600;font-size:17px;fill:#fff;text-anchor:middle"},gDeco).textContent="the river";
+  const c=el("g",{transform:"translate(1140 92)"},gDeco);
+  el("circle",{cx:0,cy:0,r:27,fill:"rgba(255,255,255,.2)",stroke:"#fff","stroke-width":1.4},c);
+  const nd=el("g",{},c);el("path",{d:"M0,-34 L7,0 L0,34 L-7,0Z",fill:"#fff"},nd);el("path",{d:"M0,-34 L7,0 L-7,0Z",style:"fill:var(--c-product)"},nd);
+  el("animateTransform",{attributeName:"transform",type:"rotate",values:"-5;6;-5",dur:"7s",repeatCount:"indefinite"},nd);
+  el("text",{x:0,y:-42,style:"font-family:var(--display);font-weight:700;font-size:16px;fill:#fff;text-anchor:middle"},c).textContent="N";
+  const T=el("g",{class:"out"},gDeco);
+  el("text",{class:"lbu",x:20,y:44,lang:"ur",style:"font-size:32px;fill:var(--wall)"},T).textContent="شہرِ خیال";
+  el("text",{class:"lbl",x:20,y:94,style:"font-size:26px"},T).textContent="Shahr-e-Khayal";
+  el("text",{class:"lbs",x:20,y:110,style:"fill:var(--ink-soft)"},T).textContent="the city of thought";
+  el("text",{class:"lbh",x:20,y:130,lang:"hi",style:"font-size:16px"},T).textContent="शहर-ए-ख़याल";
+  const s=el("g",{class:"out",transform:"translate(-78 818)"},gDeco);
+  for(let i=0;i<5;i++)el("rect",{x:i*40,y:-4,width:40,height:8,style:"fill:var("+PAL[i]+");stroke:var(--ink)","stroke-width":1},s);
+  el("text",{class:"lbs",x:0,y:-10,style:"text-anchor:start;fill:var(--ink)"},s).textContent="2023";
+  el("text",{class:"lbs",x:200,y:-10,style:"text-anchor:end;fill:var(--ink)"},s).textContent="2028";
+  el("text",{class:"lbs",x:212,y:3,style:"text-anchor:start;fill:var(--ink-soft)"},s).textContent="five years of study, one colour a year";
+})();
+if(matchMedia("(prefers-reduced-motion:reduce)").matches&&svg.pauseAnimations)svg.pauseAnimations();
+
+/* ---------- behaviour ---------- */
+const side=document.getElementById("side"),idx=document.getElementById("index"),VB0=[-100,-10,1310,850];
+let vb=VB0.slice(),raf=0;
+function zoom(to){cancelAnimationFrame(raf);
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches){vb=to.slice();svg.setAttribute("viewBox",vb.join(" "));return}
+  const from=vb.slice(),t0=performance.now();
+  (function step(now){const k=Math.min(1,(now-t0)/900),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;vb=from.map((v,i)=>v+(to[i]-v)*e);svg.setAttribute("viewBox",vb.map(v=>v.toFixed(1)).join(" "));if(k<1)raf=requestAnimationFrame(step)})(t0)}
+function clampBox(b){const w=Math.max(260,Math.min(1310,b[2])),h=w*850/1310;
+  return[Math.max(-100,Math.min(1210-w,b[0])),Math.max(-10,Math.min(840-h,b[1])),w,h]}
+function zoomBy(f,cx,cy){if(cx==null){cx=vb[0]+vb[2]/2;cy=vb[1]+vb[3]/2}
+  const w=vb[2]*f,h=vb[3]*f;zoom(clampBox([cx-(cx-vb[0])*f,cy-(cy-vb[1])*f,w,h]))}
+document.getElementById("z-in").addEventListener("click",()=>zoomBy(.62));
+document.getElementById("z-out").addEventListener("click",()=>zoomBy(1.6));
+document.getElementById("z-fit").addEventListener("click",()=>zoom(VB0));
+let drag=null,dragged=false;
+svg.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse"&&e.button!==0)return;drag={x:e.clientX,y:e.clientY,vb:vb.slice(),on:false}});
+svg.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+  if(!drag.on){if(Math.hypot(dx,dy)<6||e.pointerType!=="mouse"&&vb[2]>1300)return;drag.on=true;cancelAnimationFrame(raf);svg.classList.add("drag");try{svg.setPointerCapture(e.pointerId)}catch(_){}}
+  const k=drag.vb[2]/svg.getBoundingClientRect().width;vb=clampBox([drag.vb[0]-dx*k,drag.vb[1]-dy*k,drag.vb[2],drag.vb[3]]);svg.setAttribute("viewBox",vb.map(v=>v.toFixed(1)).join(" "));e.preventDefault()});
+function endDrag(){if(drag&&drag.on){dragged=true;setTimeout(()=>dragged=false,60)}drag=null;svg.classList.remove("drag")}
+svg.addEventListener("pointerup",endDrag);svg.addEventListener("pointercancel",endDrag);
+svg.addEventListener("wheel",e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const r=svg.getBoundingClientRect();
+  const cx=vb[0]+(e.clientX-r.left)/r.width*vb[2],cy=vb[1]+(e.clientY-r.top)/r.height*vb[3],f=e.deltaY>0?1.18:.85;
+  cancelAnimationFrame(raf);vb=clampBox([cx-(cx-vb[0])*f,cy-(cy-vb[1])*f,vb[2]*f,vb[3]*f]);svg.setAttribute("viewBox",vb.map(v=>v.toFixed(1)).join(" "))},{passive:false});
+svg.addEventListener("dblclick",e=>{const r=svg.getBoundingClientRect();zoomBy(.6,vb[0]+(e.clientX-r.left)/r.width*vb[2],vb[1]+(e.clientY-r.top)/r.height*vb[3])});
+function boxFor(id){let cx,cy,w;
+  if(GATES[id]){[cx,cy]=GATES[id].p;w=640}
+  else if(id==="chowk"){[cx,cy]=CH;w=580}
+  else{const P=POLY[id].pg,xs=P.map(p=>p[0]),ys=P.map(p=>p[1]);cx=(Math.min(...xs)+Math.max(...xs))/2;cy=(Math.min(...ys)+Math.max(...ys))/2;
+    w=Math.max(Math.max(...xs)-Math.min(...xs)+200,(Math.max(...ys)-Math.min(...ys)+160)*1310/850)}
+  const h=w*850/1310;return[cx-w/2,cy-h/2,w,h]}
+function show(id){
+  const isIdx=id==="index";document.body.classList.toggle("idx",isIdx);
+  document.getElementById("btn-index").setAttribute("aria-pressed",isIdx);
+  document.getElementById("btn-index").textContent=isIdx?"Back to the map":"Plain index";
+  svg.querySelectorAll(".active").forEach(n=>n.classList.remove("active"));svg.classList.remove("has-active");
+  if(isIdx){idx.innerHTML=Q.map(q=>panelHTML(q,false)).join("");return}
+  const q=byId[id];
+  if(!q){side.innerHTML=legendHTML();zoom(VB0);return}
+  side.innerHTML=panelHTML(q,true);countUp(side);
+  const n=svg.querySelector('[data-id="'+id+'"]');if(n){n.classList.add("active");svg.classList.add("has-active")}
+  if(innerWidth>1020)zoom(boxFor(id));else side.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function go(id){const h=id?"#"+id:"#legend";if(location.hash===h)show(id);else location.hash=h}
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+svg.addEventListener("click",e=>{if(dragged)return;const n=e.target.closest("[data-id]");if(n)go(n.dataset.id)});
+svg.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){const n=e.target.closest("[data-id]");if(n){e.preventDefault();go(n.dataset.id)}}});
+side.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(b.dataset.go);else if(e.target.closest("[data-back]"))go("")});
+function hot(id,on){const n=svg.querySelector('[data-id="'+id+'"]');if(n)n.classList.toggle("hot",on)}
+side.addEventListener("mouseover",e=>{const b=e.target.closest("[data-go]");if(b)hot(b.dataset.go,true)});
+side.addEventListener("mouseout",e=>{const b=e.target.closest("[data-go]");if(b)hot(b.dataset.go,false)});
+svg.addEventListener("mouseover",e=>{const n=e.target.closest("[data-id]");if(n){const b=side.querySelector('[data-go="'+n.dataset.id+'"]');if(b)b.classList.add("hot")}});
+svg.addEventListener("mouseout",()=>{side.querySelectorAll(".lg.hot").forEach(b=>b.classList.remove("hot"))});
+document.getElementById("btn-index").addEventListener("click",()=>go(document.body.classList.contains("idx")?"":"index"));
+const nb=document.getElementById("btn-night");
+function night(on){document.documentElement.classList.toggle("night",on);nb.setAttribute("aria-pressed",on);nb.textContent=on?"Bring back the day":"Light the lamps"}
+nb.addEventListener("click",()=>night(!document.documentElement.classList.contains("night")));
+(function(){const h=new Date().getHours();night(h>=19||h<6)})();
+show(location.hash.slice(1));
+(function(){const w=document.getElementById("mapwrap");w.scrollLeft=(w.scrollWidth-w.clientWidth)/2})();
+</script>
+</body>
+</html>
